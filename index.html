@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>THE CAGE — Outdoor Street Basketball Court</title>
+<meta name="description" content="The Cage — the city's premier outdoor street basketball court. Pickup games, tournaments, and community runs all day, every day." />
+<style>
+  :root {
+    --bg: #05060a;
+    --bg-2: #0a0d18;
+    --panel: rgba(15, 18, 30, 0.65);
+    --line: rgba(120, 160, 255, 0.18);
+    --text: #e7ecf5;
+    --muted: #8a94aa;
+    --accent: #00ffd1;
+    --accent-2: #ff4d2e;
+    --gold: #ffd24a;
+    --grad: linear-gradient(135deg, #00ffd1 0%, #4d8cff 50%, #ff4d2e 100%);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(900px 500px at 12% 8%, rgba(0,255,209,0.12), transparent 60%),
+      radial-gradient(800px 600px at 88% 20%, rgba(255,77,46,0.10), transparent 65%),
+      radial-gradient(700px 500px at 50% 110%, rgba(77,140,255,0.10), transparent 70%);
+    z-index: -2; pointer-events: none;
+  }
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(120,160,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(120,160,255,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    z-index: -1; pointer-events: none;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(5,6,10,0.55);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 18px 28px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: 0.18em; font-size: 1.05rem; }
+  .logo-mark {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--grad);
+    display: grid; place-items: center;
+    box-shadow: 0 0 24px rgba(0,255,209,0.35);
+    position: relative;
+  }
+  .logo-mark::after {
+    content: ""; position: absolute; inset: 2px;
+    border-radius: 6px; background: var(--bg);
+  }
+  .logo-mark span {
+    position: relative; z-index: 1;
+    font-size: 1rem; font-weight: 900;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.92rem; letter-spacing: 0.06em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    padding: 10px 20px; border-radius: 999px;
+    background: var(--grad); color: #021018;
+    font-weight: 800; font-size: 0.85rem; letter-spacing: 0.08em;
+    text-decoration: none; box-shadow: 0 0 20px rgba(0,255,209,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(0,255,209,0.5); }
+
+  /* HERO */
+  .hero {
+    max-width: 1200px; margin: 0 auto; padding: 90px 28px 80px;
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px; align-items: center;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px;
+    background: rgba(0,255,209,0.06); font-size: 0.78rem; letter-spacing: 0.18em;
+    color: var(--accent); text-transform: uppercase; font-weight: 700;
+  }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+  h1 {
+    font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+    line-height: 1.02; font-weight: 900; letter-spacing: -0.02em;
+    margin: 22px 0 18px;
+  }
+  h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p.lead { font-size: 1.1rem; color: var(--muted); max-width: 540px; margin-bottom: 32px; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    padding: 14px 26px; border-radius: 10px; font-weight: 700; font-size: 0.95rem;
+    letter-spacing: 0.04em; text-decoration: none; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s; border: none;
+  }
+  .btn-primary { background: var(--grad); color: #021018; box-shadow: 0 0 24px rgba(0,255,209,0.3); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,255,209,0.45); }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Hero visual */
+  .hero-visual {
+    position: relative; aspect-ratio: 1/1.05;
+    border-radius: 20px; overflow: hidden;
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 30% 30%, rgba(0,255,209,0.18), transparent 60%),
+      radial-gradient(circle at 70% 80%, rgba(255,77,46,0.18), transparent 65%),
+      var(--bg-2);
+    display: grid; place-items: center;
+  }
+  .court {
+    width: 80%; aspect-ratio: 1/1.5;
+    position: relative;
+    border: 2px solid rgba(231,236,245,0.85);
+    border-radius: 8px;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 22px, rgba(255,255,255,0.02) 22px 23px),
+      linear-gradient(180deg, rgba(0,255,209,0.04), rgba(255,77,46,0.04));
+  }
+  .court::before, .court::after {
+    content: ""; position: absolute; left: 50%; transform: translateX(-50%);
+    width: 55%; height: 32%; border: 2px solid rgba(231,236,245,0.85);
+  }
+  .court::before { top: 0; border-top: none; }
+  .court::after { bottom: 0; border-bottom: none; }
+  .court .center-line {
+    position: absolute; top: 50%; left: 0; right: 0; height: 2px;
+    background: rgba(231,236,245,0.85);
+  }
+  .court .center-circle {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 28%; aspect-ratio: 1; border: 2px solid rgba(231,236,245,0.85); border-radius: 50%;
+  }
+  .court .ball {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #ff8a4d, #d6470b 70%);
+    box-shadow: 0 0 24px rgba(255,77,46,0.6), inset -4px -4px 10px rgba(0,0,0,0.35);
+    animation: bounce 2.4s ease-in-out infinite;
+  }
+  .court .ball::before, .court .ball::after {
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.55);
+  }
+  .court .ball::before { clip-path: polygon(48% 0, 52% 0, 52% 100%, 48% 100%); }
+  .court .ball::after { clip-path: polygon(0 48%, 100% 48%, 100% 52%, 0 52%); }
+
+  @keyframes bounce {
+    0%, 100% { transform: translate(-50%, -65%); }
+    50% { transform: translate(-50%, -35%); }
+  }
+
+  .stat-pill {
+    position: absolute;
+    padding: 12px 16px; border-radius: 12px;
+    background: rgba(10,13,24,0.85); border: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+    font-size: 0.82rem;
+  }
+  .stat-pill .v { display: block; font-weight: 900; font-size: 1.3rem; color: var(--accent); }
+  .stat-pill.tl { top: 18px; left: 18px; }
+  .stat-pill.br { bottom: 18px; right: 18px; }
+  .stat-pill.br .v { color: var(--accent-2); }
+
+  /* Section heads */
+  section { max-width: 1200px; margin: 0 auto; padding: 80px 28px; }
+  .section-head { text-align: center; margin-bottom: 56px; }
+  .section-head .eyebrow {
+    font-size: 0.78rem; letter-spacing: 0.28em; color: var(--accent);
+    text-transform: uppercase; font-weight: 700;
+  }
+  .section-head h2 {
+    font-size: clamp(1.9rem, 3.6vw, 2.8rem); font-weight: 900;
+    margin-top: 10px; letter-spacing: -0.01em;
+  }
+  .section-head p { color: var(--muted); margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+  /* FEATURES */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .feature {
+    padding: 28px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .feature:hover { transform: translateY(-4px); border-color: rgba(0,255,209,0.4); }
+  .feature .icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: rgba(0,255,209,0.1); border: 1px solid var(--line);
+    display: grid; place-items: center; margin-bottom: 18px;
+    color: var(--accent); font-size: 1.4rem;
+  }
+  .feature h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; }
+  .feature p { color: var(--muted); font-size: 0.92rem; }
+
+  /* GALLERY */
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .gallery-card {
+    border-radius: 16px; overflow: hidden; position: relative;
+    border: 1px solid var(--line); aspect-ratio: 4/5;
+    background: var(--bg-2);
+    transition: transform 0.3s;
+  }
+  .gallery-card:hover { transform: translateY(-4px) scale(1.01); }
+  .gallery-card img { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.05) saturate(1.1); }
+  .gallery-card .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(5,6,10,0.85) 100%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 22px;
+  }
+  .gallery-card .tag {
+    align-self: flex-start;
+    padding: 4px 10px; border-radius: 6px;
+    background: rgba(0,255,209,0.18); color: var(--accent);
+    font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .gallery-card h4 { font-size: 1.1rem; font-weight: 800; }
+  .gallery-card p { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+
+  /* REVIEWS */
+  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .review {
+    padding: 26px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    position: relative;
+  }
+  .review .stars { color: var(--gold); letter-spacing: 0.12em; font-size: 1rem; margin-bottom: 12px; }
+  .review .quote { font-size: 0.98rem; line-height: 1.65; color: #d6dcea; }
+  .review .who { display: flex; align-items: center; gap: 12px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .review .avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 800; font-size: 1rem;
+    color: #021018;
+  }
+  .review .name { font-weight: 700; font-size: 0.95rem; }
+  .review .role { font-size: 0.78rem; color: var(--muted); }
+
+  /* Stats strip */
+  .stats {
+    margin: 40px auto; max-width: 1200px;
+    padding: 36px 28px;
+    background: linear-gradient(135deg, rgba(0,255,209,0.06), rgba(255,77,46,0.06));
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    text-align: center;
+  }
+  .stat .num {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .stat .lbl { font-size: 0.82rem; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+
+  /* VISIT / CTA */
+  .visit {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    align-items: center;
+  }
+  .visit-info { padding: 8px; }
+  .visit-info h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 900; margin-bottom: 18px; letter-spacing: -0.01em; }
+  .visit-info p { color: var(--muted); margin-bottom: 26px; }
+  .info-grid { display: grid; gap: 16px; }
+  .info-row {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  }
+  .info-row .ico {
+    width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+    display: grid; place-items: center; font-size: 1.1rem;
+    background: rgba(0,255,209,0.1); color: var(--accent); border: 1px solid var(--line);
+  }
+  .info-row .lbl { font-size: 0.74rem; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; font-weight: 700; }
+  .info-row .val { font-weight: 700; margin-top: 2px; font-size: 0.98rem; }
+
+  .map-card {
+    aspect-ratio: 1/1;
+    border-radius: 18px; border: 1px solid var(--line); overflow: hidden;
+    background: var(--bg-2); position: relative;
+  }
+  .map-grid {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(rgba(0,255,209,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,209,0.08) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  .map-pin {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 0 8px rgba(255,77,46,0.2), 0 0 0 18px rgba(255,77,46,0.1), 0 0 32px rgba(255,77,46,0.5);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 6px rgba(255,77,46,0.25), 0 0 0 14px rgba(255,77,46,0.1), 0 0 24px rgba(255,77,46,0.5); }
+    50% { box-shadow: 0 0 0 14px rgba(255,77,46,0.15), 0 0 0 26px rgba(255,77,46,0.05), 0 0 40px rgba(255,77,46,0.7); }
+  }
+  .map-label {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -52px);
+    padding: 6px 12px; background: rgba(5,6,10,0.9); border: 1px solid var(--line);
+    border-radius: 6px; font-size: 0.78rem; letter-spacing: 0.12em; font-weight: 700;
+    color: var(--text); white-space: nowrap;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 40px 28px 30px;
+    text-align: center; color: var(--muted); font-size: 0.86rem;
+    margin-top: 40px;
+  }
+  footer .brand-line { color: var(--text); font-weight: 800; letter-spacing: 0.18em; margin-bottom: 8px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; padding: 60px 22px 50px; gap: 40px; }
+    .features, .gallery, .reviews { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .visit { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    section { padding: 60px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark"><span>C</span></div>
+      <div>THE&nbsp;CAGE</div>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Court</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </div>
+    <a class="nav-cta" href="#visit">Find Us</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-text">
+    <div class="badge">Open · 6am – 11pm Daily</div>
+    <h1>Where the streets <span class="grad">run the game.</span></h1>
+    <p class="lead">
+      The Cage is the city's most respected outdoor court — full-court runs, pickup leagues, and after-dark tournaments under the lights. Bring your game. Leave a legacy.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#visit">Get Directions</a>
+      <a class="btn btn-ghost" href="#reviews">Read Reviews</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-pill tl"><span class="v">4.9★</span>Google Rated</div>
+    <div class="stat-pill br"><span class="v">24/7</span>Lit at Night</div>
+    <div class="court">
+      <div class="center-line"></div>
+      <div class="center-circle"></div>
+      <div class="ball"></div>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="section-head">
+    <div class="eyebrow">Built For The Run</div>
+    <h2>Everything a hooper needs.</h2>
+    <p>Real rims. Real net. Real competition. The Cage isn't just a court — it's the neighborhood proving ground.</p>
+  </div>
+  <div class="features">
+    <div class="feature">
+      <div class="icon">●</div>
+      <h3>Pro-Spec Rims</h3>
+      <p>Breakaway rims, fresh nets, and a court line-painted to regulation. Train like the pros, every single day.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">◐</div>
+      <h3>Full LED Lighting</h3>
+      <p>High-output floodlights keep the run going long after the sun's gone. Night games hit different here.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">◆</div>
+      <h3>Fenced & Secure</h3>
+      <p>Steel-frame cage with locked gates after hours. Safe to come solo, safe to bring the family.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">▲</div>
+      <h3>Pickup Runs Daily</h3>
+      <p>5v5 organized runs every evening. Bring sneakers — winners stay, losers wait their turn.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">★</div>
+      <h3>Monthly Tournaments</h3>
+      <p>Cash-prize 3v3 and 5v5 brackets the last Saturday of every month. Sign-up at the gate.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">◢</div>
+      <h3>Water & Benches</h3>
+      <p>Fresh-fill water station, covered benches, phone-charge bench, and a community board. We thought of everything.</p>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="num">4.9★</div><div class="lbl">Google Rating</div></div>
+  <div class="stat"><div class="num">1.2K+</div><div class="lbl">Runs Played</div></div>
+  <div class="stat"><div class="num">24</div><div class="lbl">Tournaments Hosted</div></div>
+  <div class="stat"><div class="num">365</div><div class="lbl">Days Open</div></div>
+</div>
+
+<section id="gallery">
+  <div class="section-head">
+    <div class="eyebrow">The Community</div>
+    <h2>Real people. Real culture.</h2>
+    <p>The Cage is more than concrete and steel — it's the locals who make it what it is. Snapshots from the neighborhood.</p>
+  </div>
+  <div class="gallery">
+    <div class="gallery-card">
+      <img src="img1.png" alt="Community member at The Cage" />
+      <div class="overlay">
+        <span class="tag">Community</span>
+        <h4>Built by the block</h4>
+        <p>Locals who keep the culture alive.</p>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="img2.png" alt="Regular at The Cage" />
+      <div class="overlay">
+        <span class="tag">Regulars</span>
+        <h4>Faces of The Cage</h4>
+        <p>The hoopers and supporters who run it daily.</p>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="img3.png" alt="The Cage crew" />
+      <div class="overlay">
+        <span class="tag">The Crew</span>
+        <h4>One court. One family.</h4>
+        <p>Where rivalries become friendships.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="section-head">
+    <div class="eyebrow">★★★★★ Verified Reviews</div>
+    <h2>What the locals say.</h2>
+    <p>Real reviews from the runners, the regulars, and the rim-rattlers who call The Cage home.</p>
+  </div>
+  <div class="reviews">
+
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"Cleanest, smoothest court in the city. The rims are pro-level and the runs are competitive every single night. I've been hooping here for two years and I'm never going anywhere else. The Cage is home."</p>
+      <div class="who">
+        <div class="avatar" style="background: linear-gradient(135deg, #00ffd1, #4d8cff);">D</div>
+        <div>
+          <div class="name">Djbril</div>
+          <div class="role">Regular · 2 years on the court</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"Brought my whole squad here last Saturday for a 3v3. Lights were perfect, court was painted fresh, and the energy was unmatched. If you actually love basketball, The Cage is THE spot. Period."</p>
+      <div class="who">
+        <div class="avatar" style="background: linear-gradient(135deg, #ff4d2e, #ffd24a);">D</div>
+        <div>
+          <div class="name">Devonte</div>
+          <div class="role">3v3 Tournament Player</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"Honestly the best outdoor court I've ever played on. Everyone is welcoming, the runs are organized, and the vibe is pure basketball. Came once, came back the next day, now I'm here every week."</p>
+      <div class="who">
+        <div class="avatar" style="background: linear-gradient(135deg, #4d8cff, #00ffd1);">W</div>
+        <div>
+          <div class="name">Wanyi</div>
+          <div class="role">Weekly Hooper</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"The Cage changed my life — found my pickup crew here. Safe, well-lit, and the competition pushes you to get better every day. Shoutout to whoever runs this spot, you built something special."</p>
+      <div class="who">
+        <div class="avatar" style="background: linear-gradient(135deg, #ffd24a, #ff4d2e);">J</div>
+        <div>
+          <div class="name">Jeremy Gomez Ruiz</div>
+          <div class="role">Pickup Crew Captain</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"I'm not even a hardcore player but I love coming to The Cage. Watching the games, the music in the background, the community feeling — it's like the heart of the neighborhood. Five stars easy."</p>
+      <div class="who">
+        <div class="avatar" style="background: linear-gradient(135deg, #00ffd1, #ffd24a);">D</div>
+        <div>
+          <div class="name">Destiny</div>
+          <div class="role">Local Supporter</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review" style="background: linear-gradient(135deg, rgba(0,255,209,0.08), rgba(255,77,46,0.06)); border-color: rgba(0,255,209,0.35);">
+      <div class="stars">★★★★★</div>
+      <p class="quote"><strong>Average rating: 5.0 / 5</strong><br/>Across all verified visits.<br/><br/>Want to leave a review? Find us on Google Maps and let the world know what you think of The Cage.</p>
+      <div class="who">
+        <div class="avatar" style="background: var(--grad);">★</div>
+        <div>
+          <div class="name">100% 5-Star</div>
+          <div class="role">From every verified visitor</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="visit" class="visit">
+  <div class="visit-info">
+    <div class="badge">Come Through</div>
+    <h2>Find <span style="background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;">The Cage.</span></h2>
+    <p>We're open every day, all year. Walk-ons welcome, no membership, no fee. Just show up and run.</p>
+    <div class="info-grid">
+      <div class="info-row">
+        <div class="ico">◉</div>
+        <div>
+          <div class="lbl">Hours</div>
+          <div class="val">6:00 AM – 11:00 PM · Daily</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="ico">◈</div>
+        <div>
+          <div class="lbl">Location</div>
+          <div class="val">Outdoor Court · Neighborhood Park</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="ico">◆</div>
+        <div>
+          <div class="lbl">Entry</div>
+          <div class="val">Free · Open to the Public</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="ico">★</div>
+        <div>
+          <div class="lbl">Tournament Night</div>
+          <div class="val">Last Saturday of Every Month</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="map-card">
+    <div class="map-grid"></div>
+    <div class="map-label">YOU ARE HERE</div>
+    <div class="map-pin"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand-line">THE CAGE</div>
+  <p>Where the streets run the game. © 2026 — All runs reserved.</p>
+</footer>
+
+</body>
+</html>
