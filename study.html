@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>THE CAGE · Study Bunker — AQA Combined Science 2026 Predictions</title>
+<style>
+  :root {
+    --bg: #05060a;
+    --bg-2: #0a0d18;
+    --panel: rgba(15, 18, 30, 0.7);
+    --panel-2: rgba(20, 25, 42, 0.85);
+    --line: rgba(120, 160, 255, 0.18);
+    --text: #e7ecf5;
+    --muted: #8a94aa;
+    --accent: #00ffd1;
+    --accent-2: #ff4d2e;
+    --accent-3: #4d8cff;
+    --gold: #ffd24a;
+    --bio: #00ffa1;
+    --chem: #ff8a4d;
+    --phys: #4d8cff;
+    --grad: linear-gradient(135deg, #00ffd1 0%, #4d8cff 50%, #ff4d2e 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+    background:
+      radial-gradient(900px 500px at 12% 8%, rgba(0,255,209,0.12), transparent 60%),
+      radial-gradient(800px 600px at 88% 20%, rgba(255,77,46,0.1), transparent 65%),
+      radial-gradient(700px 500px at 50% 110%, rgba(77,140,255,0.1), transparent 70%);
+  }
+  body::after {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(120,160,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(120,160,255,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(5,6,10,0.55);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { max-width: 1280px; margin: 0 auto; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+  .logo { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: 0.18em; font-size: 1rem; }
+  .logo-mark {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--grad); display: grid; place-items: center;
+    box-shadow: 0 0 24px rgba(0,255,209,0.35); position: relative;
+  }
+  .logo-mark::after { content: ""; position: absolute; inset: 2px; border-radius: 6px; background: var(--bg); }
+  .logo-mark span { position: relative; z-index: 1; font-size: 1rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .nav-back { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px; transition: all 0.2s; }
+  .nav-back:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* HERO */
+  header.hero {
+    max-width: 1280px; margin: 0 auto; padding: 60px 28px 40px; text-align: center;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px;
+    background: rgba(0,255,209,0.06); font-size: 0.74rem; letter-spacing: 0.22em;
+    color: var(--accent); text-transform: uppercase; font-weight: 700;
+  }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+  header h1 { font-size: clamp(2.2rem, 4.8vw, 3.8rem); font-weight: 900; letter-spacing: -0.02em; margin: 22px 0 14px; line-height: 1.04; }
+  header h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  header p.lead { font-size: 1.05rem; color: var(--muted); max-width: 680px; margin: 0 auto; }
+
+  /* TABS */
+  .tabs {
+    max-width: 1280px; margin: 40px auto 0; padding: 0 28px;
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  }
+  .tab-btn {
+    padding: 12px 22px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--panel); color: var(--muted); cursor: pointer;
+    font-family: inherit; font-size: 0.92rem; font-weight: 700; letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); border-color: rgba(0,255,209,0.4); }
+  .tab-btn.active { background: var(--grad); color: #021018; border-color: transparent; box-shadow: 0 0 24px rgba(0,255,209,0.3); }
+
+  /* CONTENT */
+  main { max-width: 1280px; margin: 0 auto; padding: 40px 28px 80px; }
+  .panel-section { display: none; animation: fade 0.4s; }
+  .panel-section.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .panel-header { display: flex; align-items: center; gap: 18px; margin-bottom: 30px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+  .panel-tag {
+    padding: 8px 16px; border-radius: 8px; font-size: 0.78rem; font-weight: 800;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .tag-bio { background: rgba(0,255,161,0.15); color: var(--bio); border: 1px solid rgba(0,255,161,0.35); }
+  .tag-chem { background: rgba(255,138,77,0.15); color: var(--chem); border: 1px solid rgba(255,138,77,0.35); }
+  .tag-phys { background: rgba(77,140,255,0.15); color: var(--phys); border: 1px solid rgba(77,140,255,0.35); }
+  .panel-header h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; }
+
+  /* SECTION HEAD */
+  .sub-head { margin: 40px 0 18px; display: flex; align-items: center; gap: 12px; }
+  .sub-head .num {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: grid; place-items: center; font-weight: 900; font-size: 0.9rem;
+    background: var(--grad); color: #021018;
+  }
+  .sub-head h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.01em; }
+  .sub-head .note { color: var(--muted); font-size: 0.85rem; margin-left: auto; }
+
+  /* PREDICTIONS GRID */
+  .predictions { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .pred {
+    padding: 22px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; position: relative; transition: transform 0.2s, border-color 0.2s;
+  }
+  .pred:hover { transform: translateY(-3px); border-color: rgba(0,255,209,0.4); }
+  .pred .conf {
+    position: absolute; top: 14px; right: 14px;
+    padding: 3px 9px; border-radius: 6px; font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .conf-high { background: rgba(0,255,209,0.18); color: var(--accent); }
+  .conf-med { background: rgba(255,210,74,0.18); color: var(--gold); }
+  .conf-low { background: rgba(255,77,46,0.18); color: var(--accent-2); }
+  .pred h4 { font-size: 1.02rem; font-weight: 800; margin-bottom: 8px; padding-right: 70px; }
+  .pred p { font-size: 0.88rem; color: var(--muted); }
+  .pred .why { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); font-size: 0.8rem; color: #b6c0d6; }
+  .pred .why strong { color: var(--accent); letter-spacing: 0.08em; font-size: 0.72rem; }
+
+  /* FLASHCARDS */
+  .fc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .fc {
+    perspective: 1000px; cursor: pointer; height: 180px;
+  }
+  .fc-inner {
+    position: relative; width: 100%; height: 100%; text-align: center;
+    transition: transform 0.6s; transform-style: preserve-3d;
+  }
+  .fc.flipped .fc-inner { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute; inset: 0; backface-visibility: hidden;
+    border-radius: 14px; padding: 22px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    border: 1px solid var(--line);
+  }
+  .fc-front {
+    background: var(--panel);
+    font-weight: 700; font-size: 1rem;
+  }
+  .fc-front .q-label {
+    font-size: 0.7rem; letter-spacing: 0.22em; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 10px; font-weight: 800;
+  }
+  .fc-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, rgba(0,255,209,0.08), rgba(255,77,46,0.06));
+    border-color: rgba(0,255,209,0.35);
+    font-size: 0.88rem; color: #d6dcea; line-height: 1.5;
+  }
+  .fc-back .a-label {
+    font-size: 0.7rem; letter-spacing: 0.22em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 8px; font-weight: 800;
+  }
+  .fc-hint { text-align: center; color: var(--muted); font-size: 0.82rem; margin-bottom: 16px; }
+
+  /* PRACTICE QUESTIONS */
+  .qbox {
+    margin-bottom: 14px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 12px; overflow: hidden;
+  }
+  .q-head {
+    padding: 16px 20px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+    transition: background 0.2s;
+  }
+  .q-head:hover { background: rgba(0,255,209,0.04); }
+  .q-num {
+    flex-shrink: 0;
+    padding: 4px 10px; border-radius: 6px;
+    background: rgba(77,140,255,0.18); color: var(--accent-3);
+    font-size: 0.74rem; font-weight: 800; letter-spacing: 0.1em;
+  }
+  .q-text { flex: 1; font-size: 0.95rem; font-weight: 600; }
+  .q-marks { color: var(--gold); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.06em; }
+  .q-arrow { color: var(--muted); transition: transform 0.3s; font-size: 1rem; }
+  .qbox.open .q-arrow { transform: rotate(180deg); color: var(--accent); }
+  .q-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease;
+    border-top: 1px solid transparent;
+  }
+  .qbox.open .q-body {
+    max-height: 1000px;
+    border-top-color: var(--line);
+  }
+  .q-body-inner {
+    padding: 18px 20px;
+    background: rgba(0,0,0,0.2);
+    font-size: 0.9rem; color: #d6dcea;
+  }
+  .q-body-inner .ms-label {
+    font-size: 0.7rem; letter-spacing: 0.22em; color: var(--gold);
+    text-transform: uppercase; font-weight: 800; margin-bottom: 8px;
+  }
+  .q-body-inner ul { margin-left: 18px; margin-top: 6px; }
+  .q-body-inner li { margin-bottom: 4px; }
+  .q-body-inner strong { color: var(--accent); }
+
+  /* QUICK REF */
+  .quick-ref { background: linear-gradient(135deg, rgba(0,255,209,0.06), rgba(255,77,46,0.04)); border: 1px solid rgba(0,255,209,0.25); border-radius: 14px; padding: 22px; }
+  .quick-ref h4 { font-size: 1rem; font-weight: 800; margin-bottom: 10px; color: var(--accent); letter-spacing: 0.04em; }
+  .quick-ref ul { margin-left: 18px; color: #d6dcea; font-size: 0.92rem; }
+  .quick-ref li { margin-bottom: 6px; }
+  .formula {
+    display: inline-block; padding: 3px 10px;
+    background: rgba(255,210,74,0.12); color: var(--gold);
+    border-radius: 6px; font-family: 'Consolas', monospace; font-size: 0.9rem;
+    border: 1px solid rgba(255,210,74,0.3); margin: 2px 4px;
+  }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--line); padding: 30px 28px; text-align: center; color: var(--muted); font-size: 0.84rem; margin-top: 60px; }
+  footer strong { color: var(--text); letter-spacing: 0.16em; }
+
+  @media (max-width: 720px) {
+    .fc-grid { grid-template-columns: 1fr; }
+    main { padding: 24px 18px 50px; }
+    .nav-inner { padding: 14px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark"><span>C</span></div>
+      <div>THE&nbsp;CAGE&nbsp;·&nbsp;STUDY&nbsp;BUNKER</div>
+    </div>
+    <a class="nav-back" href="index.html">← Back to Court</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="badge">AQA Combined Science · 2026 Prediction Bunker</div>
+  <h1>Cram for the <span class="grad">remaining papers.</span></h1>
+  <p class="lead">Predictions, flashcards, and practice questions for Physics P1, Biology P2, Chemistry P2, and Physics P2 — based on the AQA Trilogy spec and what's already come up in Paper 1.</p>
+</header>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="phys1">⚛ Physics P1</button>
+  <button class="tab-btn" data-tab="bio2">🧬 Biology P2</button>
+  <button class="tab-btn" data-tab="chem2">⚗ Chemistry P2</button>
+  <button class="tab-btn" data-tab="phys2">🧲 Physics P2</button>
+  <button class="tab-btn" data-tab="tips">⚡ Exam Tips</button>
+</div>
+
+<main>
+
+<!-- ========== PHYSICS P1 ========== -->
+<section class="panel-section active" id="phys1">
+  <div class="panel-header">
+    <span class="panel-tag tag-phys">Physics · Paper 1</span>
+    <h2>Energy · Electricity · Particle Model · Atomic Structure</h2>
+  </div>
+
+  <div class="sub-head"><div class="num">1</div><h3>Top Predicted Topics</h3><div class="note">Confidence based on spec weighting & past trends</div></div>
+  <div class="predictions">
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Specific Heat Capacity (required practical)</h4>
+      <p>Calculation: E = mcΔθ. Likely 4–6 mark practical eval — heater, insulation, thermometer, time.</p>
+      <div class="why"><strong>WHY:</strong> Hits every year. Easy to combine with energy efficiency.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>I–V Graphs (filament lamp, diode, resistor)</h4>
+      <p>Identify component from graph shape. Explain why resistance changes with current/temperature.</p>
+      <div class="why"><strong>WHY:</strong> Fixed favourite for 6-markers; pairs with required practical.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Alpha vs Beta vs Gamma — properties</h4>
+      <p>Penetration, ionising power, charge, what stops each. Contamination vs irradiation distinction.</p>
+      <div class="why"><strong>WHY:</strong> Came up lightly in 2024; the 6-mark "compare" is overdue.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Half-Life Calculations</h4>
+      <p>Both reading from graph and "how many half-lives to reach X count rate". 1/2ⁿ pattern.</p>
+      <div class="why"><strong>WHY:</strong> Maths skill required by spec, easy to set as 3–4 marker.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Density Calculations + Required Practical</h4>
+      <p>ρ = m/V. Eureka can / displacement method for irregular solid. Tricky unit conversion: g/cm³ ↔ kg/m³.</p>
+      <div class="why"><strong>WHY:</strong> Last big-ticket required practical not in Bio P1.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Specific Latent Heat (E = mL)</h4>
+      <p>Heating/cooling curve, plateau = state change, energy goes to breaking bonds not raising temp.</p>
+      <div class="why"><strong>WHY:</strong> Combined often pairs the heating curve graph with a 4-mark explain.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Series vs Parallel Circuits</h4>
+      <p>Calculate total R, V, I. Add a resistor — what happens to current/total resistance.</p>
+      <div class="why"><strong>WHY:</strong> Almost always at least one circuit-calc question.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Plum Pudding → Nuclear Model</h4>
+      <p>Rutherford's alpha scattering: observations + conclusions about atom structure (small dense + positive nucleus, mostly empty space).</p>
+      <div class="why"><strong>WHY:</strong> A 4-marker "describe how evidence changed the model" pattern.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Power, Energy Transfer, Cost</h4>
+      <p>P = IV, P = I²R, E = Pt, kWh × cost. Domestic appliance question — pick the most efficient.</p>
+      <div class="why"><strong>WHY:</strong> Real-world calc, AQA loves these for combined.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-low">Possible</span>
+      <h4>Gas Pressure / Particle Motion</h4>
+      <p>Why does pressure increase with temperature? More frequent + harder collisions with container walls.</p>
+      <div class="why"><strong>WHY:</strong> Standard 3-marker; sometimes skipped, but spec demands it.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-low">Possible</span>
+      <h4>National Grid / Step-up &amp; Step-down</h4>
+      <p>Transformers — why high V, low I reduces energy lost as heat in cables.</p>
+      <div class="why"><strong>WHY:</strong> Combined-spec topic, comes up roughly every 2 years.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-low">Possible</span>
+      <h4>Static Electricity / Sparks</h4>
+      <p>Electron transfer, like charges repel, danger of sparking near fuel.</p>
+      <div class="why"><strong>WHY:</strong> Smaller topic but hasn't been tested heavily.</div>
+    </div>
+  </div>
+
+  <div class="sub-head"><div class="num">2</div><h3>Flashcards — Click to Flip</h3><div class="note">12 cards · core knowledge</div></div>
+  <p class="fc-hint">Tap any card to reveal the answer.</p>
+  <div class="fc-grid" id="phys1-fc">
+    <!-- generated by JS -->
+  </div>
+
+  <div class="sub-head"><div class="num">3</div><h3>Practice Questions</h3><div class="note">Click to reveal mark scheme</div></div>
+  <div id="phys1-q"></div>
+
+  <div class="sub-head"><div class="num">4</div><h3>Formula Quick-Reference</h3></div>
+  <div class="quick-ref">
+    <h4>Memorise These (given on Paper 1 ✓ or NOT given ✗)</h4>
+    <ul>
+      <li><strong>✗ Must learn:</strong> <span class="formula">E = mcΔθ</span> energy transferred (specific heat capacity)</li>
+      <li><strong>✗ Must learn:</strong> <span class="formula">KE = ½mv²</span> kinetic energy</li>
+      <li><strong>✗ Must learn:</strong> <span class="formula">GPE = mgh</span> gravitational PE</li>
+      <li><strong>✗ Must learn:</strong> <span class="formula">W = Fs</span> work done</li>
+      <li><strong>✗ Must learn:</strong> <span class="formula">P = E/t</span> power</li>
+      <li><strong>✗ Must learn:</strong> <span class="formula">ρ = m/V</span> density</li>
+      <li><strong>✗ Must learn:</strong> <span class="formula">Q = It</span> charge</li>
+      <li><strong>✗ Must learn:</strong> <span class="formula">V = IR</span> potential difference</li>
+      <li><strong>✗ Must learn:</strong> <span class="formula">P = IV</span> = <span class="formula">I²R</span> electrical power</li>
+      <li><strong>✗ Must learn:</strong> <span class="formula">E = Pt</span> = <span class="formula">QV</span> energy transferred</li>
+      <li><strong>✓ Given:</strong> <span class="formula">E = mL</span> specific latent heat</li>
+      <li><strong>✓ Given:</strong> efficiency = useful output ÷ total input</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== BIOLOGY P2 ========== -->
+<section class="panel-section" id="bio2">
+  <div class="panel-header">
+    <span class="panel-tag tag-bio">Biology · Paper 2</span>
+    <h2>Homeostasis · Inheritance · Ecology</h2>
+  </div>
+
+  <div class="sub-head"><div class="num">1</div><h3>Top Predicted Topics</h3><div class="note">Cross-referenced with what hit Paper 1</div></div>
+  <div class="predictions">
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Reflex Arc (6-marker likely)</h4>
+      <p>Stimulus → receptor → sensory neurone → relay → motor neurone → effector → response. Why reflexes are involuntary.</p>
+      <div class="why"><strong>WHY:</strong> Neurones came up briefly in P1 — full arc question often follows in P2.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Insulin, Glucagon &amp; Diabetes</h4>
+      <p>Negative feedback loop. Type 1 vs Type 2 differences. Treatments (insulin injection vs diet/exercise).</p>
+      <div class="why"><strong>WHY:</strong> Hit nearly every year. Often paired with a data interpretation.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Punnett Squares + Inherited Disorders</h4>
+      <p>Cystic fibrosis (recessive), polydactyly (dominant). Probability calculations from a cross.</p>
+      <div class="why"><strong>WHY:</strong> Genetics is a 100% lock for P2. Expect 4–6 marks here.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Evolution — Darwin &amp; Natural Selection</h4>
+      <p>Variation → competition → survival of fittest → reproduce → pass on alleles. Antibiotic-resistant bacteria as example.</p>
+      <div class="why"><strong>WHY:</strong> The classic 6-mark "explain how X evolved" question.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Quadrats / Transects — Sampling</h4>
+      <p>Random sampling method, mean per m², estimate total population. Belt transect for distribution along a gradient.</p>
+      <div class="why"><strong>WHY:</strong> Required practical, almost always shows up.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Carbon Cycle</h4>
+      <p>Photosynthesis, respiration, combustion, decomposition. Label arrows on a diagram.</p>
+      <div class="why"><strong>WHY:</strong> Classic recall-then-apply question; due for inclusion.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Thermoregulation</h4>
+      <p>Vasoconstriction/dilation, sweating, shivering, hairs raised/flat. Skin diagram label.</p>
+      <div class="why"><strong>WHY:</strong> A reliable homeostasis 4-marker.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>DNA Structure (basic)</h4>
+      <p>Double helix, nucleotides, base pairs (A-T, C-G), genome definition.</p>
+      <div class="why"><strong>WHY:</strong> Combined keeps it light but the recall question is overdue.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Food Chains / Pyramids of Biomass</h4>
+      <p>Energy loss between trophic levels (heat, movement, undigested). Efficiency calc.</p>
+      <div class="why"><strong>WHY:</strong> Maths-in-ecology question fits combined nicely.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Sex Determination (XX vs XY)</h4>
+      <p>Punnett square showing 50/50 ratio of boys to girls.</p>
+      <div class="why"><strong>WHY:</strong> Often a quick 2–3 marker.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-low">Possible</span>
+      <h4>Plant Hormones (auxin)</h4>
+      <p>Phototropism, gravitropism. Required practical: effect of light on seedlings.</p>
+      <div class="why"><strong>WHY:</strong> Smaller topic but spec-listed; pops up every 2nd year.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-low">Possible</span>
+      <h4>Biodiversity / Deforestation</h4>
+      <p>Causes + effects. Land use changes, peat bog destruction, climate impact.</p>
+      <div class="why"><strong>WHY:</strong> Good 4-mark "evaluate" candidate.</div>
+    </div>
+  </div>
+
+  <div class="sub-head"><div class="num">2</div><h3>Flashcards — Click to Flip</h3></div>
+  <p class="fc-hint">Tap any card to reveal the answer.</p>
+  <div class="fc-grid" id="bio2-fc"></div>
+
+  <div class="sub-head"><div class="num">3</div><h3>Practice Questions</h3></div>
+  <div id="bio2-q"></div>
+
+  <div class="sub-head"><div class="num">4</div><h3>Must-Know Definitions</h3></div>
+  <div class="quick-ref">
+    <h4>Bio P2 Vocab</h4>
+    <ul>
+      <li><strong>Homeostasis:</strong> regulation of internal conditions in response to internal/external change to maintain optimum conditions.</li>
+      <li><strong>Negative feedback:</strong> when a condition deviates from norm, body acts to bring it back (e.g. blood glucose).</li>
+      <li><strong>Gene:</strong> small section of DNA on a chromosome that codes for a particular protein.</li>
+      <li><strong>Allele:</strong> different version of a gene.</li>
+      <li><strong>Phenotype:</strong> physical expression of genotype.</li>
+      <li><strong>Mutation:</strong> random change in DNA — most have no effect, rarely beneficial.</li>
+      <li><strong>Biodiversity:</strong> variety of all different species in an ecosystem.</li>
+      <li><strong>Ecosystem:</strong> interaction of community of living things with non-living parts of environment.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== CHEM P2 ========== -->
+<section class="panel-section" id="chem2">
+  <div class="panel-header">
+    <span class="panel-tag tag-chem">Chemistry · Paper 2</span>
+    <h2>Rates · Organic · Analysis · Atmosphere · Resources</h2>
+  </div>
+
+  <div class="sub-head"><div class="num">1</div><h3>Top Predicted Topics</h3><div class="note">Topics 6–10 of the spec</div></div>
+  <div class="predictions">
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Rate of Reaction — Calculate from Graph</h4>
+      <p>Rate = change in quantity ÷ time. Draw tangent for instantaneous rate. Units: g/s, cm³/s, mol/s.</p>
+      <div class="why"><strong>WHY:</strong> Required practical territory + maths skill — always tested.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Collision Theory — Effect of Factors</h4>
+      <p>Temperature, concentration, surface area, catalyst. Always frame as: more frequent collisions / more energy / lower activation energy.</p>
+      <div class="why"><strong>WHY:</strong> Classic 4–6 marker. Locked in.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Crude Oil + Fractional Distillation</h4>
+      <p>Process, why fractions separate (boiling points), property trends down column (chain length, viscosity, volatility, flammability).</p>
+      <div class="why"><strong>WHY:</strong> Almost guaranteed; pairs with cracking.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Chromatography (Rf values)</h4>
+      <p>Rf = distance moved by substance ÷ distance moved by solvent. Pencil baseline. Why solvent shouldn't be above the spots.</p>
+      <div class="why"><strong>WHY:</strong> Required practical, hits roughly every other year.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Greenhouse Gases &amp; Climate Change</h4>
+      <p>CO₂, CH₄, water vapour. Mechanism: IR absorbed/re-emitted. Effects + mitigation.</p>
+      <div class="why"><strong>WHY:</strong> Big 6-marker "evaluate evidence" pattern.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Gas Tests (the four)</h4>
+      <p>H₂ = squeaky pop. O₂ = relights glowing splint. CO₂ = limewater cloudy. Cl₂ = bleaches damp blue litmus.</p>
+      <div class="why"><strong>WHY:</strong> 4 marks of pure recall — always somewhere.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Atmosphere Evolution</h4>
+      <p>Early CO₂ (volcanoes) → oceans absorb CO₂ → plants/algae photosynthesise → O₂ rises, CO₂ falls.</p>
+      <div class="why"><strong>WHY:</strong> Reliable 4-marker, often a "describe how" question.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Cracking Alkanes</h4>
+      <p>Long chain → short chain + alkene. Why we crack (demand for shorter fractions, alkenes for polymers). Conditions: high temp + catalyst.</p>
+      <div class="why"><strong>WHY:</strong> Standard organic question.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Pollutants from Fuels</h4>
+      <p>CO (incomplete combustion, toxic), SO₂ (acid rain), NOₓ (high temp engines), particulates (global dimming, respiratory).</p>
+      <div class="why"><strong>WHY:</strong> Classic 4-mark "compare" or "explain harm" question.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Potable Water Production</h4>
+      <p>Filter → sterilise (chlorine/UV/ozone). Sea water = distillation. Why distillation is expensive.</p>
+      <div class="why"><strong>WHY:</strong> Required practical link; common.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-low">Possible</span>
+      <h4>Reversible Reactions / Equilibrium</h4>
+      <p>Dynamic equilibrium definition. Combined doesn't need Le Chatelier in depth but recognising the ⇌ symbol matters.</p>
+      <div class="why"><strong>WHY:</strong> Sometimes appears as a 2–3 marker.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-low">Possible</span>
+      <h4>Life Cycle Assessment</h4>
+      <p>Raw materials → manufacture → use → disposal. Compare two products (e.g. paper vs plastic bag).</p>
+      <div class="why"><strong>WHY:</strong> Good extended-response candidate.</div>
+    </div>
+  </div>
+
+  <div class="sub-head"><div class="num">2</div><h3>Flashcards — Click to Flip</h3></div>
+  <p class="fc-hint">Tap any card to reveal the answer.</p>
+  <div class="fc-grid" id="chem2-fc"></div>
+
+  <div class="sub-head"><div class="num">3</div><h3>Practice Questions</h3></div>
+  <div id="chem2-q"></div>
+
+  <div class="sub-head"><div class="num">4</div><h3>Quick Recall Table</h3></div>
+  <div class="quick-ref">
+    <h4>Chem P2 — Memorise These</h4>
+    <ul>
+      <li><strong>Alkane general formula:</strong> CₙH₂ₙ₊₂ — first 4: methane, ethane, propane, butane.</li>
+      <li><strong>Alkene general formula:</strong> CₙH₂ₙ — contains C=C double bond, decolourises bromine water (orange → colourless).</li>
+      <li><strong>Complete combustion:</strong> hydrocarbon + O₂ → CO₂ + H₂O</li>
+      <li><strong>Incomplete combustion:</strong> produces CO + C (soot) + H₂O</li>
+      <li><strong>Atmosphere now:</strong> ~78% N₂, ~21% O₂, ~1% Ar, ~0.04% CO₂</li>
+      <li><strong>Pure substance:</strong> single element or compound, sharp melting point.</li>
+      <li><strong>Formulation:</strong> mixture made to a specific recipe (medicines, fuels, alloys).</li>
+      <li><strong>Limewater test:</strong> CO₂ turns it cloudy/milky (calcium carbonate forms).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== PHYS P2 ========== -->
+<section class="panel-section" id="phys2">
+  <div class="panel-header">
+    <span class="panel-tag tag-phys">Physics · Paper 2</span>
+    <h2>Forces · Waves · Magnetism</h2>
+  </div>
+
+  <div class="sub-head"><div class="num">1</div><h3>Top Predicted Topics</h3></div>
+  <div class="predictions">
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Hooke's Law + Spring Required Practical</h4>
+      <p>F = ke. Force–extension graph linear until limit of proportionality. Energy stored = ½ke².</p>
+      <div class="why"><strong>WHY:</strong> Spring practical is a P2 staple, every year.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Distance–Time + Velocity–Time Graphs</h4>
+      <p>Gradient = speed/acceleration. Area under v-t = distance. Identify regions (constant v, accelerating, stopped).</p>
+      <div class="why"><strong>WHY:</strong> Two of the most-tested skills.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Stopping Distance = Thinking + Braking</h4>
+      <p>Factors: reaction time (alcohol, tiredness, distractions); braking (road condition, tyres, brakes, mass, speed).</p>
+      <div class="why"><strong>WHY:</strong> Frequent 4–6 marker, real-world context.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>Wave Speed = f × λ</h4>
+      <p>Rearrange + use. Often paired with a diagram measuring wavelength from a ruler.</p>
+      <div class="why"><strong>WHY:</strong> Core formula, always tested somewhere.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-high">High</span>
+      <h4>EM Spectrum — Uses + Dangers</h4>
+      <p>Order: radio → micro → IR → vis → UV → X-ray → gamma. One use + one danger each.</p>
+      <div class="why"><strong>WHY:</strong> Easy marks; AQA loves matching uses to wave type.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Newton's Laws (especially 2nd: F = ma)</h4>
+      <p>1st: inertia. 2nd: F = ma. 3rd: equal + opposite force pairs.</p>
+      <div class="why"><strong>WHY:</strong> Required for the practical-based investigations of acceleration.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Terminal Velocity (skydiver)</h4>
+      <p>Forces balance — weight down = air resistance up. Describe stages with reference to acceleration.</p>
+      <div class="why"><strong>WHY:</strong> Classic 4-marker question.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Transverse vs Longitudinal Waves</h4>
+      <p>Examples (light vs sound). Oscillation direction relative to wave direction.</p>
+      <div class="why"><strong>WHY:</strong> Recall + small applied question.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Magnetism — Field Lines</h4>
+      <p>Bar magnet shape. Field around a wire/solenoid. Right-hand rule for direction.</p>
+      <div class="why"><strong>WHY:</strong> Combined likes the "draw the field" question.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-med">Medium</span>
+      <h4>Required Practical — Ripple Tank / Waves on a String</h4>
+      <p>Measure frequency, wavelength, calculate speed. Slow-motion observation methods.</p>
+      <div class="why"><strong>WHY:</strong> A practical write-up question is common.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-low">Possible</span>
+      <h4>Motor Effect (combined-spec level)</h4>
+      <p>Force on current-carrying wire in a field. Fleming's left-hand rule.</p>
+      <div class="why"><strong>WHY:</strong> Lower confidence — sometimes only a basic recall.</div>
+    </div>
+    <div class="pred">
+      <span class="conf conf-low">Possible</span>
+      <h4>Resultant Forces / Scale Diagrams</h4>
+      <p>Add two forces tip-to-tail. Calculate net force. Acceleration direction.</p>
+      <div class="why"><strong>WHY:</strong> Standard but sometimes skipped at combined level.</div>
+    </div>
+  </div>
+
+  <div class="sub-head"><div class="num">2</div><h3>Flashcards — Click to Flip</h3></div>
+  <p class="fc-hint">Tap any card to reveal the answer.</p>
+  <div class="fc-grid" id="phys2-fc"></div>
+
+  <div class="sub-head"><div class="num">3</div><h3>Practice Questions</h3></div>
+  <div id="phys2-q"></div>
+
+  <div class="sub-head"><div class="num">4</div><h3>Formula Sheet</h3></div>
+  <div class="quick-ref">
+    <h4>Physics P2 Formulas (✗ = not given)</h4>
+    <ul>
+      <li><strong>✗</strong> <span class="formula">s = vt</span> distance = speed × time</li>
+      <li><strong>✗</strong> <span class="formula">a = Δv/t</span> acceleration</li>
+      <li><strong>✗</strong> <span class="formula">F = ma</span> resultant force</li>
+      <li><strong>✗</strong> <span class="formula">W = mg</span> weight (g = 9.8 N/kg or 10 N/kg in calc)</li>
+      <li><strong>✗</strong> <span class="formula">F = ke</span> spring force</li>
+      <li><strong>✗</strong> <span class="formula">momentum p = mv</span> (HT only — check tier)</li>
+      <li><strong>✗</strong> <span class="formula">v = fλ</span> wave speed</li>
+      <li><strong>✗</strong> <span class="formula">T = 1/f</span> period</li>
+      <li><strong>✓ Given:</strong> <span class="formula">v² − u² = 2as</span></li>
+      <li><strong>✓ Given:</strong> <span class="formula">F = BIL</span> (HT only)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== TIPS ========== -->
+<section class="panel-section" id="tips">
+  <div class="panel-header">
+    <span class="panel-tag" style="background: var(--grad); color: #021018;">Universal</span>
+    <h2>Exam Day Tactics</h2>
+  </div>
+
+  <div class="predictions">
+    <div class="pred">
+      <h4>⚡ The 6-Marker Formula</h4>
+      <p><strong>Plan 30 seconds first.</strong> 6 points minimum. Use connective phrases: "this is because…", "this means that…", "as a result…". Don't repeat the same point in different words — examiners only count once.</p>
+    </div>
+    <div class="pred">
+      <h4>⚡ Command Words</h4>
+      <p><strong>Describe</strong> = what's happening. <strong>Explain</strong> = WHY (use "because"). <strong>Evaluate</strong> = pros + cons + judgement. <strong>Compare</strong> = use "whereas" or "but". <strong>Calculate</strong> = show working, write units.</p>
+    </div>
+    <div class="pred">
+      <h4>⚡ Maths Marks</h4>
+      <p>Always write the equation FIRST (free mark). Substitute values. Calculate. Add unit. <strong>Standard form:</strong> single non-zero digit before decimal, e.g. 6.3 × 10⁵. <strong>Sig figs:</strong> match the question's data.</p>
+    </div>
+    <div class="pred">
+      <h4>⚡ Graph Skills</h4>
+      <p>Plot crosses, not dots. Best-fit line through data trend — NOT dot-to-dot. Reading values: use the gridlines, read perpendicular. Gradient = rise/run with units.</p>
+    </div>
+    <div class="pred">
+      <h4>⚡ "Evaluate the Use Of" Questions</h4>
+      <p>Always TWO sides + judgement. Use the data given in the question — quote numbers back. End with: "Overall, X because…"</p>
+    </div>
+    <div class="pred">
+      <h4>⚡ Required Practical Pattern</h4>
+      <p>If asked to improve: think (1) reduce random error → repeat & mean, (2) reduce systematic error → calibrate or check instrument, (3) control variables, (4) reduce parallax / use data logger.</p>
+    </div>
+    <div class="pred">
+      <h4>⚡ Magic Vocab That Earns Marks</h4>
+      <p>Bio: <em>active site, complementary, semi-permeable, concentration gradient</em>. Chem: <em>activation energy, frequent collisions, intermolecular forces</em>. Phys: <em>directly proportional, terminal velocity, resultant force</em>.</p>
+    </div>
+    <div class="pred">
+      <h4>⚡ Time Allocation</h4>
+      <p>1 mark ≈ 1 minute. 75 marks in 75 minutes (combined paper). Leave 5 min at end to check standard form, units, and any blank questions. <strong>Don't leave anything blank — write something.</strong></p>
+    </div>
+  </div>
+
+  <div class="sub-head"><div class="num">★</div><h3>Last-Night Checklist</h3></div>
+  <div class="quick-ref">
+    <h4>The Night Before</h4>
+    <ul>
+      <li>Review formula sheets — write all non-given formulas on a single page.</li>
+      <li>Re-read your 6-mark answers from past mocks. Look at the mark scheme.</li>
+      <li>Sleep 8 hours. Cramming past 10pm = diminishing returns.</li>
+      <li>Pack: 2 black pens, pencil, ruler, calculator (check batteries), eraser, sharpener, water.</li>
+      <li>Eat breakfast. Brain is 2% of mass but uses 20% of glucose.</li>
+      <li>Arrive 20 min early — read board for room/seat allocation.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div><strong>THE CAGE · STUDY BUNKER</strong></div>
+  <p>Predictions are educated guesses based on the AQA spec + past paper patterns. Use as a guide, not gospel. Smash it. 🏀</p>
+</footer>
+
+<script>
+  // ===== TAB SWITCHING =====
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const sections = document.querySelectorAll('.panel-section');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // ===== FLASHCARDS DATA =====
+  const flashcards = {
+    'phys1-fc': [
+      ['What is the equation for specific heat capacity?', 'E = mcΔθ — energy = mass × specific heat capacity × temperature change.'],
+      ['Define specific heat capacity.', 'The energy needed to raise the temperature of 1 kg of a substance by 1 °C.'],
+      ['What does the I-V graph of a filament lamp look like?', 'S-shaped curve through origin — resistance INCREASES as current increases (filament heats up).'],
+      ['What does the I-V graph of a diode look like?', 'Flat at 0 then sharp rise above threshold voltage — only allows current one way.'],
+      ['List alpha, beta, gamma penetration.', 'Alpha = stopped by paper/skin. Beta = stopped by ~5mm aluminium. Gamma = needs thick lead/concrete.'],
+      ['Difference between contamination & irradiation?', 'Contamination = radioactive material gets ON or IN you. Irradiation = exposed to radiation but no source contact.'],
+      ['What is a half-life?', 'Time taken for the number of radioactive nuclei (or count rate) to halve.'],
+      ['Describe Rutherford\'s scattering experiment.', 'Fired alpha at thin gold foil. Most passed straight through (atom mostly empty). Some deflected (positive nucleus). Few bounced back (nucleus is dense + small).'],
+      ['Density formula?', 'ρ = m/V (density = mass ÷ volume). Units: kg/m³ or g/cm³.'],
+      ['What is specific latent heat?', 'Energy required to change state of 1 kg of substance with no temperature change. E = mL.'],
+      ['What 3 wires are in a UK mains plug?', 'Live (brown, 230V), Neutral (blue, 0V), Earth (green/yellow, safety).'],
+      ['Energy stored in a stretched spring formula?', 'E = ½ × k × e² (where k = spring constant, e = extension).'],
+    ],
+    'bio2-fc': [
+      ['Path of a reflex arc.', 'Stimulus → receptor → sensory neurone → relay neurone (in CNS) → motor neurone → effector → response.'],
+      ['Why are reflexes important?', 'They are rapid and automatic — protect the body from damage (e.g. blinking, removing hand from heat).'],
+      ['What does insulin do?', 'Released by pancreas when blood glucose is HIGH. Causes liver/muscles to take up glucose and store as glycogen.'],
+      ['What does glucagon do?', 'Released by pancreas when blood glucose is LOW. Causes liver to convert glycogen → glucose, releasing it into blood.'],
+      ['Difference: Type 1 vs Type 2 diabetes?', 'Type 1 = pancreas doesn\'t produce insulin (treat with insulin injections). Type 2 = body cells resistant to insulin (treat with diet/exercise).'],
+      ['Define gene, allele, genotype, phenotype.', 'Gene = section of DNA coding for a protein. Allele = version of a gene. Genotype = alleles you have. Phenotype = expressed trait.'],
+      ['How does evolution by natural selection work?', '(1) Variation in population. (2) Competition for resources. (3) Best-adapted survive. (4) They reproduce. (5) Pass advantageous alleles to offspring.'],
+      ['How does antibiotic resistance evolve?', 'Random mutation makes a bacterium resistant. Antibiotic kills non-resistant. Resistant bacteria survive, reproduce, pass on resistance gene.'],
+      ['How do you calculate Rf in chromatography?', 'Rf = distance moved by substance ÷ distance moved by solvent.'],
+      ['How do you use a quadrat for sampling?', 'Place randomly (random number coords), count species, repeat 10+ times, calculate mean per m², multiply by total area.'],
+      ['Carbon cycle: 4 key processes.', 'Photosynthesis (CO₂ → glucose). Respiration (glucose → CO₂). Combustion (fossil fuel → CO₂). Decomposition (dead matter → CO₂).'],
+      ['Thermoregulation when hot.', 'Vasodilation (blood vessels widen near skin), sweating (evaporation removes heat), hairs flat.'],
+    ],
+    'chem2-fc': [
+      ['Collision theory: 4 factors that increase rate.', 'Temperature (more energy, more frequent collisions). Concentration/pressure (more particles per volume). Surface area (more exposed particles). Catalyst (lowers activation energy).'],
+      ['How does a catalyst work?', 'Provides an alternative reaction pathway with a LOWER activation energy. It is not used up in the reaction.'],
+      ['Test for hydrogen?', 'Lighted splint → squeaky pop sound.'],
+      ['Test for oxygen?', 'Glowing splint → relights.'],
+      ['Test for carbon dioxide?', 'Bubble through limewater → turns cloudy/milky.'],
+      ['Test for chlorine?', 'Damp blue litmus paper → bleaches white (also turns red briefly).'],
+      ['Alkane general formula?', 'CₙH₂ₙ₊₂. Saturated (only single bonds).'],
+      ['Alkene general formula + test?', 'CₙH₂ₙ. Test: decolourises bromine water from orange to colourless (C=C reacts).'],
+      ['Why is crude oil separated by fractional distillation?', 'Each fraction has hydrocarbons of similar boiling points (similar chain length). They evaporate, rise, and condense at different heights in the column.'],
+      ['Why crack hydrocarbons?', 'High demand for short-chain fuels + alkenes (for polymers). Long-chain fractions in excess are cracked into useful smaller molecules.'],
+      ['Rf value formula?', 'Rf = distance moved by spot ÷ distance moved by solvent. Always between 0 and 1.'],
+      ['How was Earth\'s atmosphere formed?', 'Volcanoes released CO₂ + water vapour + N₂. Water condensed → oceans. CO₂ dissolved in oceans. Algae + plants photosynthesised → O₂ rose, CO₂ fell.'],
+    ],
+    'phys2-fc': [
+      ['Hooke\'s law equation?', 'F = k × e (force = spring constant × extension). Only valid below limit of proportionality.'],
+      ['What does the gradient of a distance–time graph give?', 'Speed (or velocity if direction matters).'],
+      ['What does the gradient of a velocity–time graph give? And the area?', 'Gradient = acceleration. Area under graph = distance travelled.'],
+      ['F = ma — explain in words.', 'Resultant force on an object = its mass × its acceleration. Bigger force = more acceleration. Bigger mass = less acceleration.'],
+      ['Wave speed equation?', 'v = f × λ (speed = frequency × wavelength). Units: m/s, Hz, m.'],
+      ['EM spectrum order (low → high frequency)?', 'Radio, Microwave, Infrared, Visible, Ultraviolet, X-ray, Gamma. (Mnemonic: Red Monkeys In Vans Use X-Ray Guns.)'],
+      ['One use + one danger of microwaves?', 'Use: cooking food, satellite communication. Danger: internal heating of body tissue.'],
+      ['One use + one danger of UV?', 'Use: detecting forged banknotes, sun tanning. Danger: skin cancer, eye damage.'],
+      ['Difference: transverse vs longitudinal wave?', 'Transverse: oscillation PERPENDICULAR to wave direction (light, water). Longitudinal: oscillation PARALLEL (sound, compressions/rarefactions).'],
+      ['Terminal velocity of a skydiver — describe.', 'Initially weight > air resistance → accelerates. As speed rises, air resistance rises. Eventually forces balance → constant velocity (terminal).'],
+      ['What is the motor effect?', 'Current-carrying wire in a magnetic field experiences a force. Direction given by Fleming\'s left-hand rule.'],
+      ['Factors affecting stopping distance?', 'Thinking: reaction time (alcohol, tiredness, drugs, distraction). Braking: speed, mass, road conditions (wet/icy), tyre/brake condition.'],
+    ]
+  };
+
+  // Build flashcards
+  Object.entries(flashcards).forEach(([containerId, cards]) => {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    cards.forEach(([q, a]) => {
+      const fc = document.createElement('div');
+      fc.className = 'fc';
+      fc.innerHTML = `
+        <div class="fc-inner">
+          <div class="fc-front"><div class="q-label">Question</div>${q}</div>
+          <div class="fc-back"><div class="a-label">Answer</div>${a}</div>
+        </div>`;
+      fc.addEventListener('click', () => fc.classList.toggle('flipped'));
+      container.appendChild(fc);
+    });
+  });
+
+  // ===== PRACTICE QUESTIONS =====
+  const questions = {
+    'phys1-q': [
+      {q: 'A 0.5 kg block of copper is heated. Its temperature rises by 20 °C. The specific heat capacity of copper is 385 J/kg°C. Calculate the energy transferred.', m: 3, ms: ['E = mcΔθ <strong>(1)</strong>', 'E = 0.5 × 385 × 20 <strong>(1)</strong>', 'E = <strong>3850 J</strong> (or 3.85 kJ) <strong>(1)</strong>']},
+      {q: 'A radioactive sample has a count rate of 800 cpm. After 12 hours, count rate falls to 100 cpm. Calculate the half-life.', m: 3, ms: ['800 → 400 → 200 → 100 = <strong>3 half-lives</strong> <strong>(1)</strong>', '12 ÷ 3 = <strong>(1)</strong>', '<strong>4 hours</strong> <strong>(1)</strong>']},
+      {q: 'Explain why a filament lamp\'s resistance increases as current through it increases. [3 marks]', m: 3, ms: ['Current causes filament to heat up <strong>(1)</strong>', 'Ions in metal vibrate more <strong>(1)</strong>', 'Electrons collide more frequently with ions → resistance increases <strong>(1)</strong>']},
+      {q: 'A kettle is rated at 2300 W. It is used for 4 minutes. Calculate the energy transferred in kJ.', m: 3, ms: ['E = Pt <strong>(1)</strong>', 'E = 2300 × (4×60) = 2300 × 240 <strong>(1)</strong>', 'E = 552 000 J = <strong>552 kJ</strong> <strong>(1)</strong>']},
+      {q: 'Compare contamination and irradiation. Give one example of each. [4 marks]', m: 4, ms: ['Contamination = radioactive source on/in body <strong>(1)</strong>; example e.g. ingesting contaminated food <strong>(1)</strong>', 'Irradiation = exposure to radiation from external source, no contact <strong>(1)</strong>; example e.g. X-ray at hospital <strong>(1)</strong>']},
+      {q: '6-marker: Describe how Rutherford\'s alpha scattering experiment changed the plum pudding model.', m: 6, ms: [
+        '<strong>Plum pudding:</strong> atom is sphere of positive charge with electrons embedded',
+        '<strong>Experiment:</strong> alpha particles fired at thin gold foil',
+        '<strong>Observation 1:</strong> most passed straight through → atom mostly empty space',
+        '<strong>Observation 2:</strong> some deflected → centre is positively charged',
+        '<strong>Observation 3:</strong> few bounced back → nucleus is small + very dense',
+        '<strong>New model:</strong> small dense positive nucleus, electrons orbit around it',
+      ]},
+    ],
+    'bio2-q': [
+      {q: 'Describe the pathway taken by a nerve impulse in a reflex arc when you touch a hot object. [4 marks]', m: 4, ms: ['Receptor in skin detects heat (stimulus) <strong>(1)</strong>', 'Sensory neurone carries impulse to spinal cord/CNS <strong>(1)</strong>', 'Relay neurone passes signal to motor neurone <strong>(1)</strong>', 'Motor neurone carries impulse to effector (muscle) which contracts to move hand away <strong>(1)</strong>']},
+      {q: 'A man with cystic fibrosis (cc) has a child with a carrier woman (Cc). What is the probability the child has the disorder? Show a Punnett square.', m: 3, ms: ['Punnett square showing cross cc × Cc <strong>(1)</strong>', 'Offspring: Cc, Cc, cc, cc <strong>(1)</strong>', 'Probability = 2/4 = <strong>50% (or 0.5 or 1/2)</strong> <strong>(1)</strong>']},
+      {q: 'Explain how insulin controls blood glucose concentration after a meal. [4 marks]', m: 4, ms: ['Blood glucose rises after eating <strong>(1)</strong>', 'Pancreas detects this and releases insulin <strong>(1)</strong>', 'Insulin causes liver and muscle cells to absorb glucose <strong>(1)</strong>', 'Glucose stored as glycogen → blood glucose returns to normal <strong>(1)</strong>']},
+      {q: '6-marker: Explain how a population of bacteria can become resistant to an antibiotic.', m: 6, ms: [
+        'Random mutation occurs in DNA of one bacterium',
+        'Mutation makes the bacterium resistant to the antibiotic',
+        'When antibiotic is applied, non-resistant bacteria are killed',
+        'Resistant bacterium survives → reproduces',
+        'Passes on resistance gene/allele to offspring',
+        'Over generations, the whole population becomes resistant',
+      ]},
+      {q: 'A student uses a 0.25 m² quadrat. They place it 10 times and count an average of 6 daisies per quadrat. The field is 200 m². Estimate the total number of daisies.', m: 3, ms: ['Mean per m² = 6 ÷ 0.25 = 24 daisies/m² <strong>(1)</strong>', '24 × 200 <strong>(1)</strong>', '= <strong>4800 daisies</strong> <strong>(1)</strong>']},
+      {q: 'Describe how the body responds when core temperature drops below 37 °C. [3 marks]', m: 3, ms: ['Vasoconstriction — blood vessels in skin narrow, less heat lost <strong>(1)</strong>', 'Shivering — muscles contract rapidly, respiration releases heat <strong>(1)</strong>', 'Hairs stand up (erector muscles contract), trap insulating layer of air <strong>(1)</strong>']},
+    ],
+    'chem2-q': [
+      {q: 'Explain, using collision theory, why increasing temperature increases the rate of reaction. [3 marks]', m: 3, ms: ['Particles have more (kinetic) energy <strong>(1)</strong>', 'More frequent collisions / particles move faster <strong>(1)</strong>', 'Greater proportion of collisions have energy ≥ activation energy → successful <strong>(1)</strong>']},
+      {q: 'In a chromatography experiment, the solvent moved 8.0 cm and the dye moved 6.4 cm. Calculate the Rf value.', m: 2, ms: ['Rf = 6.4 ÷ 8.0 <strong>(1)</strong>', '= <strong>0.8</strong> <strong>(1)</strong>']},
+      {q: 'Describe the test for chlorine gas. [2 marks]', m: 2, ms: ['Hold damp blue litmus paper in the gas <strong>(1)</strong>', 'Litmus is bleached (turns white) <strong>(1)</strong>']},
+      {q: 'Explain why fractional distillation can separate the fractions in crude oil. [3 marks]', m: 3, ms: ['Hydrocarbons have different chain lengths / different boiling points <strong>(1)</strong>', 'Oil is heated and evaporates, vapours rise up the column (which is cooler at the top) <strong>(1)</strong>', 'Each fraction condenses at a different height where temperature matches its boiling point <strong>(1)</strong>']},
+      {q: '6-marker: Describe how the evolution of plants and algae changed Earth\'s atmosphere over billions of years.', m: 6, ms: [
+        'Early atmosphere was mainly CO₂ from volcanic activity, with little/no O₂',
+        'Algae evolved in oceans ~2.7 billion years ago (then later, plants)',
+        'They photosynthesised: CO₂ + H₂O → glucose + O₂',
+        'This removed CO₂ from atmosphere',
+        'And released O₂ into atmosphere',
+        'CO₂ also dissolved in oceans and was locked away in sedimentary rocks/fossil fuels — final atmosphere ~78% N₂, 21% O₂, 0.04% CO₂',
+      ]},
+      {q: 'A piece of magnesium ribbon reacts faster than the same mass of magnesium powder is FALSE. Explain why.', m: 2, ms: ['Statement is reversed — powder reacts FASTER, not ribbon <strong>(1)</strong>', 'Powder has a much larger surface area exposed → more frequent collisions with acid particles per unit time <strong>(1)</strong>']},
+    ],
+    'phys2-q': [
+      {q: 'A spring has spring constant 25 N/m. It is extended by 0.08 m. Calculate the force applied.', m: 2, ms: ['F = ke <strong>(1)</strong>', 'F = 25 × 0.08 = <strong>2 N</strong> <strong>(1)</strong>']},
+      {q: 'A car accelerates from 5 m/s to 25 m/s in 8 seconds. Calculate the acceleration.', m: 2, ms: ['a = (v − u) ÷ t = (25 − 5) ÷ 8 <strong>(1)</strong>', '= <strong>2.5 m/s²</strong> <strong>(1)</strong>']},
+      {q: 'A wave on a string has frequency 200 Hz and wavelength 0.15 m. Calculate its speed.', m: 2, ms: ['v = fλ = 200 × 0.15 <strong>(1)</strong>', '= <strong>30 m/s</strong> <strong>(1)</strong>']},
+      {q: 'A skydiver jumps from a plane. Describe and explain the motion until they reach terminal velocity. [4 marks]', m: 4, ms: ['Initially weight (downward) is greater than air resistance — accelerate downward <strong>(1)</strong>', 'As speed increases, air resistance increases <strong>(1)</strong>', 'When air resistance = weight, resultant force is zero <strong>(1)</strong>', 'Skydiver falls at constant velocity = terminal velocity <strong>(1)</strong>']},
+      {q: '6-marker: Give one use and one danger for each of: microwaves, UV, and gamma rays.', m: 6, ms: [
+        '<strong>Microwaves use:</strong> cooking food / satellite communication',
+        '<strong>Microwaves danger:</strong> internal heating of body cells/water in tissues',
+        '<strong>UV use:</strong> detecting fake banknotes / energy-efficient lighting / sun tanning',
+        '<strong>UV danger:</strong> skin cancer / damage to surface cells / eye damage (cataracts)',
+        '<strong>Gamma use:</strong> sterilising medical equipment / treating cancer (radiotherapy)',
+        '<strong>Gamma danger:</strong> mutation in DNA / cancer / cell death',
+      ]},
+      {q: 'A car of mass 1200 kg has a resultant force of 3600 N. Calculate its acceleration.', m: 2, ms: ['F = ma → a = F/m = 3600 ÷ 1200 <strong>(1)</strong>', '= <strong>3 m/s²</strong> <strong>(1)</strong>']},
+    ]
+  };
+
+  Object.entries(questions).forEach(([containerId, qs]) => {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    qs.forEach((item, i) => {
+      const box = document.createElement('div');
+      box.className = 'qbox';
+      const msList = item.ms.map(m => `<li>${m}</li>`).join('');
+      box.innerHTML = `
+        <div class="q-head">
+          <span class="q-num">Q${i+1}</span>
+          <div class="q-text">${item.q}</div>
+          <span class="q-marks">[${item.m} marks]</span>
+          <span class="q-arrow">▼</span>
+        </div>
+        <div class="q-body">
+          <div class="q-body-inner">
+            <div class="ms-label">Mark Scheme</div>
+            <ul>${msList}</ul>
+          </div>
+        </div>`;
+      box.querySelector('.q-head').addEventListener('click', () => box.classList.toggle('open'));
+      container.appendChild(box);
+    });
+  });
+</script>
+
+</body>
+</html>
